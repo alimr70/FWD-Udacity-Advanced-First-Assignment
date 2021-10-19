@@ -1,7 +1,7 @@
 import React from "react";
 import Book from "./Book";
 
-const Bookshelf = ({ bookshelfTitle, books, shelfID }) => {
+const Bookshelf = ({ bookshelfTitle, books, shelfID, onBookshelfChange }) => {
   return (
     <div>
       <div className="bookshelf">
@@ -13,10 +13,8 @@ const Bookshelf = ({ bookshelfTitle, books, shelfID }) => {
                 book.shelf === shelfID && (
                   <Book
                     key={book.id}
-                    id={book.id}
-                    imageURL={book.imageLinks.thumbnail}
-                    title={book.title}
-                    authors={book.authors}
+                    book={book}
+                    onBookshelfChange={onBookshelfChange}
                   />
                 )
               );

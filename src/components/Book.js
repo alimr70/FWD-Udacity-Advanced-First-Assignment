@@ -1,7 +1,7 @@
 import React from "react";
 import BookshelfChanger from "./BookshelfChanger";
 
-const Book = ({ id, imageURL, title, authors }) => {
+const Book = ({ book, onBookshelfChange }) => {
   return (
     <li>
       <div className="book">
@@ -11,13 +11,13 @@ const Book = ({ id, imageURL, title, authors }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${imageURL}")`,
+              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
             }}
           />
-          <BookshelfChanger />
+          <BookshelfChanger book={book} onBookshelfChange={onBookshelfChange} />
         </div>
-        <div className="book-title"> {title} </div>
-        {authors.map((author) => (
+        <div className="book-title"> {book.title} </div>
+        {book.authors.map((author) => (
           <div key={author} className="book-authors">
             {author}
           </div>

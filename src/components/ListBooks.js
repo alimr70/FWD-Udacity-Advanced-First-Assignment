@@ -15,6 +15,16 @@ class ListBooks extends Component {
     });
   }
 
+  changeBookshelf = (id, shelf) => {
+    let foundBook = this.state.books.find((book) => book.id === id);
+    let newBooksState = this.state.books.filter((book) => book.id !== id);
+    foundBook = { ...foundBook, shelf };
+    newBooksState = [...newBooksState, foundBook];
+    this.setState(() => ({
+      books: newBooksState,
+    }));
+  };
+
   render() {
     return (
       <div className="list-books">
@@ -28,6 +38,7 @@ class ListBooks extends Component {
               shelfID={shelf}
               bookshelfTitle={shelf}
               books={this.state.books}
+              onBookshelfChange={this.changeBookshelf}
             />
           ))}
         </div>
