@@ -11,17 +11,23 @@ const Book = ({ book, onBookshelfChange }) => {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url("${book.imageLinks.thumbnail}")`,
+              backgroundImage: `url("${
+                book.imageLinks ? book.imageLinks.thumbnail : ""
+              }")`,
             }}
           />
-          <BookshelfChanger book={book} onBookshelfChange={onBookshelfChange} />
+          <BookshelfChanger
+            book={book}
+            onBookshelfChange={onBookshelfChange ? onBookshelfChange : ""}
+          />
         </div>
         <div className="book-title"> {book.title} </div>
-        {book.authors.map((author) => (
-          <div key={author} className="book-authors">
-            {author}
-          </div>
-        ))}
+        {book.authors &&
+          book.authors.map((author) => (
+            <div key={author} className="book-authors">
+              {author}
+            </div>
+          ))}
       </div>
     </li>
   );

@@ -8,19 +8,19 @@ class BookshelfChanger extends Component {
   };
 
   componentDidMount() {
+    BooksAPI.get(this.props.book.id).then((book) =>
+      this.setState(() => ({ shelf: book.shelf }))
+    );
     this.setState(() => ({
       book: this.props.book,
-      shelf: this.props.book.shelf,
     }));
   }
 
   handleChange = (e) => {
     e.persist();
     BooksAPI.update(this.state.book, e.target.value);
-    this.props.onBookshelfChange(this.state.book.id, e.target.value);
-    // this.setState(() => ({
-    //   shelf: e.target.value,
-    // }));
+    if (this.props.onBookshelfChange)
+      this.props.onBookshelfChange(this.state.book.id, e.target.value);
   };
 
   render() {
