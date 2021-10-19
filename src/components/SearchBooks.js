@@ -11,7 +11,7 @@ class SearchBooks extends Component {
 
   handleChange = (e) => {
     e.persist();
-    let query = e.target.value.trim();
+    let query = e.target.value.trim().replace(".", "");
 
     BooksAPI.search(query).then((books) => {
       !books || books.error
